@@ -50,3 +50,24 @@ npm run seed
 npm run build
 npm run start
 ```
+
+### CRUD APIs
+Create a photo galary for a new restaurant
+POST /api/resturants
+{ 
+  resturantsName:"",
+  photo:[]
+}
+
+Retrieve a photo galary for a given resturant
+GET  /api/resturants/:id
+
+
+Update an existing photo for an existing restaurant
+PUT  /api/resturants/:id?photo=pid
+{ 
+  photo:[]
+}
+
+Delete a listing and related photos
+DELETE /api/resturants/:id
