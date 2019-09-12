@@ -53,21 +53,21 @@ npm run start
 
 ### CRUD APIs
 Create a photo galary for a new restaurant
-POST /api
+POST /api/restaurants
 { 
   resturantsName:"",
   photo:[]
 }
 
 Retrieve a photo galary for a given resturant
-GET  /api/:id
+GET  /api/restaurants/:id
 
 
 Update an existing photo for an existing restaurant
-PUT  /api/:id?photo=pid
+PUT  /api/photos/:id
 { 
   photo:[]
 }
 
 Delete a listing and related photos
-DELETE /api/:id
+DELETE /api/restaurants/:id
