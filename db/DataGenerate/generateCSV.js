@@ -4,7 +4,7 @@ const faker = require('faker');
 const gallaryGenerator = (restaurantId,imageId) => {
 
   let image_id = (restaurantId-1) * 10 + imageId;
-  let index = Math.floor(Math.random() * 9001);
+  let index = Math.floor(Math.random() * 901);
   let url = `https://jinjing-photo-gallery.s3-us-west-1.amazonaws.com/photos/${index}.jpg`;
   let description = faker.lorem.words();
       description = description.split(' ');
@@ -22,7 +22,7 @@ const restaurantGenerator = (restaurantId) => {
   let record = '';
   for (var i=1; i<=10; i++) {
     let imageDetail = gallaryGenerator(restaurantId,i);
-    let record += `${id},${restaurant_name},${imageDetail}\n`
+    record += `${id},${restaurant_name},${imageDetail}\n`
   }
   return record;
 }
@@ -45,4 +45,4 @@ const generator = async(path, num, iterator) => {
   await console.log('complete',path)
 }
 
-generator(./test2.cvs,10,restaurantGenerator)
+generator('./test2.cvs',10,restaurantGenerator)
