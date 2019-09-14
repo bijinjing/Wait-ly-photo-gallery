@@ -33,3 +33,5 @@ CREATE TABLE images (
 
 INSERT INTO listings select distinct id, restaurant_name from oldList ORDER BY id;
 INSERT INTO images select image_id, url, description, user_submit, date, id from oldList ORDER BY image_id;
+
+
