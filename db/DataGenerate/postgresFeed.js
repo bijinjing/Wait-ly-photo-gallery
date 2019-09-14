@@ -11,6 +11,7 @@ client = new Client({
 });
 
 client.connect();
+//change the file name if needed
 const text = 'INSERT INTO oldListest(id, name, image_id, url, description, user_submit, date ) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *';
 
 //change the file name if needed

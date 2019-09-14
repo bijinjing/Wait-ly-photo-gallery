@@ -46,13 +46,16 @@ class BannerGallery extends React.Component {
 
   componentDidMount() {
     let url = window.location.pathname;
-    let listing = url.slice(1, -1);
+    console.log(url)
+    let listingArr = url.split("/");
+    console.log(listingArr);
+    let listing = Number(listingArr[listingArr.length-2]);
+  
+    // if (Number(listing.slice(1)) <= 0 || Number(listing.slice(1)) >= 10000000) {
+    //   listing = 1;
+    // }
 
-    if (Number(listing.slice(1)) <= 0 || Number(listing.slice(1)) >= 100) {
-      listing = 'L1';
-    }
-
-    axios.get(`http://localhost:3001/api/${listing}`)
+    axios.get(`/api/restaurants/${listing}`)
       .then((res) => {
         this.setState({
           images: res.data
@@ -76,7 +79,7 @@ class BannerGallery extends React.Component {
     let modal = this.state.modal;
 
     for (var i = 0; i < images.length; i++) {
-      if (images[i].id === modal.id) {
+      if (images[i].image_id === modal.image_id) {
         if (images[i - 1] !== undefined) {
           this.setState({ modal: images[i - 1] });
         }
@@ -89,7 +92,7 @@ class BannerGallery extends React.Component {
     let modal = this.state.modal;
 
     for (var i = 0; i < images.length; i++) {
-      if (images[i].id === modal.id) {
+      if (images[i].image_id === modal.image_id) {
         if (images[i + 1] !== undefined) {
           this.setState({ modal: images[i + 1] });
         }

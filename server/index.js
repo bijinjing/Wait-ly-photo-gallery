@@ -18,19 +18,17 @@ app.use(function(req, res, next) {
 //get photo gallaries
 app.get('/api/restaurants/:listing', (req, res) => {
   let params = req.params.listing;
-
-  db.getImagesFromListing(params, (error, images) => {
-    if (error) { return error; }
-    res.send(images);
-  });
-
+  // db.getImagesFromListing(params, (error, images) => {
+  //   if (error) { return error; }
+  //   res.send(images);
+  // });
+  // console.log(params);
   //Cassandra
   dbCassandra.getImagebyCassandra(params,(err, result) => {
     if(err) {return err}
     res.send(result)
     console.log(result)
   })
-
 });
 
 //add listing and related photo gallaries

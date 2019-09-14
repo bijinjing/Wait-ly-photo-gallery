@@ -15,9 +15,6 @@ CREATE TABLE images (
   description varchar(255),
   user_submit boolean,
   date date,
-  unrelated_flag int,
-  inappropriate_flag int,
-  dislike_flag int
 );
 
 CREATE TABLE listings_images (

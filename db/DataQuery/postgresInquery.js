@@ -1,7 +1,5 @@
 const { Client, pool } = require('pg');
-
-
-client = new Client({
+const client = new Client({
   host: 'localhost',
   username: 'root',
   database: 'photos',
@@ -13,10 +11,14 @@ const getImagebyPostgres = (id, callback) => {
   const query = 'SELECT * FROM photos where id=?';
   client
     .query(query, [id])
-    .then(result => {
+    .then((res) => {
       console.log('hit post',res.rows[0])
+      callback(null, res.rows)
     })
-    .catch(e => console.error(e.stack));
+    .catch(e => callback(e.stack));
 }
 
 
+module.exports = {
+  getImagebyPostgres
+};
