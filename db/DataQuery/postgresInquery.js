@@ -8,16 +8,15 @@ const client = new Client({
 const getImagebyPostgres = (id, callback) => {
   client.connect();
   const newId = Number(id)
-  const query = 'SELECT * FROM photos where id=?';
+  const query = `SELECT * FROM images where listing_id=${newId};`
   client
-    .query(query, [id])
+    .query(query)
     .then((res) => {
-      console.log('hit post',res.rows[0])
+      console.log('hit post',res.rows)
       callback(null, res.rows)
     })
     .catch(e => callback(e.stack));
 }
-
 
 module.exports = {
   getImagebyPostgres
