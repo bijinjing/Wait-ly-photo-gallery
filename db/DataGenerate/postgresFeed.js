@@ -1,5 +1,7 @@
 const { Client, pool } = require('pg');
 const fs = require('fs');
+const readline = require('readline');
+const stream = require('stream');
 
 
 client = new Client({
@@ -9,44 +11,27 @@ client = new Client({
 });
 
 client.connect();
-const text = 'INSERT INTO oldListest(id, restaurant_name, image_id, url, description, user_submit, date) VALUES(?,?,?,?,?,?,?) RETURNING *';
-
-const read = (reader,data) => {
-  return new Promise((resolve) => {
-    if (!reader.read(data)) {
-      reader.once('drain', resolve)
-    } else {
-      resolve()
-    }
-  })
-}
-
-const addData = (data)=> {
-  client
-    .query(text, data)
-    .then(res => {
-      console.log(res.rows[0])
-    })
-    .catch(e => console.error(e.stack))
-}
-
-const seedor = async(path, iterator) => {
-  let readingFile = fs.createReadStream(path);
-    await read(readingFile, iterator(data))
-  await console.log('complete',path)
-}
+const text = 'INSERT INTO oldListest(id, name, image_id, url, description, user_submit, date ) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *';
 
 
-// const query = {
-//   text: 'SELECT $1::text as first_name, select $2::text as last_name',
-//   values: ['Brian', 'Carlson'],
-//   rowMode: 'array',
-// };
+const instream = fs.createReadStream('./test2.csv');
+const outstream = new stream;
+outstream.readable = true;
+outstream.writable = true;
 
-// client
-//   .query(query)
-//   .then(res => {
-//     console.log(res.fields.map(f => field.name)) // ['first_name', 'last_name']
-//     console.log(res.rows[0]) // ['Brian', 'Carlson']
-//   })
-//   .catch(e => console.error(e.stack))
+const rl = readline.createInterface({
+    input: instream,
+    output: outstream,
+    terminal: false
+});
+
+rl.on('line', (line) => {
+    let data = line.split(',')
+    client
+      .query(text, data)
+      .then(res => {
+        console.log('hit post',res.rows[0])
+      })
+      .catch(e => console.error(e.stack))
+});
+

@@ -31,6 +31,16 @@ CREATE TABLE images (
    FOREIGN KEY (listing_id) REFERENCES listings(id)
 );
 
+CREATE TABLE oldListest (
+   id integer,
+   name varchar(2083) NOT NULL,
+   image_id integer PRIMARY KEY,
+   url varchar(2083) NOT NULL,
+   description varchar(255),
+   user_submit boolean,
+   date varchar(2083) ,
+);
+
 INSERT INTO listings select distinct id, restaurant_name from oldList ORDER BY id;
 INSERT INTO images select image_id, url, description, user_submit, date, id from oldList ORDER BY image_id;
 
