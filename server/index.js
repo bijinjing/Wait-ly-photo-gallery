@@ -1,6 +1,7 @@
 const express = require('express');
 const compression = require('compression')
 const db = require('../db/index.js');
+const dbCassandra = require('../db/DataQuery/cassandraInquery.js')
 
 const app = express();
 const port = 3001;
@@ -16,10 +17,20 @@ app.use(function(req, res, next) {
 
 //get photo gallaries
 app.get('/api/restaurants/:listing', (req, res) => {
-  db.getImagesFromListing(req.params.listing, (error, images) => {
+  let params = req.params.listing;
+
+  db.getImagesFromListing(params, (error, images) => {
     if (error) { return error; }
     res.send(images);
   });
+
+  //Cassandra
+  dbCassandra.getImagebyCassandra(params,(err, result) => {
+    if(err) {return err}
+    res.send(result)
+    console.log(result)
+  })
+
 });
 
 //add listing and related photo gallaries

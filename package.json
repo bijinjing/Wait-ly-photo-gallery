@@ -18,6 +18,7 @@
     "axios": "^0.19.0",
     "compression": "^1.7.4",
     "express": "^4.17.1",
+    "express-cassandra": "^2.3.0",
     "faker": "^4.1.0",
     "image-downloader": "^3.5.0",
     "images-downloader": "^1.0.3",

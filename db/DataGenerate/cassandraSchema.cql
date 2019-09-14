@@ -12,4 +12,4 @@ CREATE TABLE photos.listings_by_id (
 );
 
 
-COPY listings_by_id (id, restaurant_name, image_id, url, description, user_submit, date) FROM './listing.csv' WITH HEADER = true;id, restaurant_name, image_id, url, description, user_submit, date] FROM './test.csv' WITH HEADER = true;
+-- COPY listings_by_id (id, restaurant_name, image_id, url, description, user_submit, date) FROM './listing.csv' WITH HEADER = true;id, restaurant_name, image_id, url, description, user_submit, date] FROM './test.csv' WITH HEADER = true;

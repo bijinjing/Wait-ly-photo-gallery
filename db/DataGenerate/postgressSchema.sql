@@ -14,7 +14,7 @@ CREATE TABLE oldList (
   date varchar(2083)
 );
 
-COPY oldList (id, restaurant_name, image_id, url, description, user_submit, date) FROM '/Users/jinjing/SDC/Banner-Gallery/listing.csv'DELIMITER ',' CSV HEADER;
+-- COPY oldList (id, restaurant_name, image_id, url, description, user_submit, date) FROM '/Users/jinjing/SDC/Banner-Gallery/listing.csv'DELIMITER ',' CSV HEADER;
 
 CREATE TABLE listings (
    id integer PRIMARY KEY,
@@ -38,7 +38,7 @@ CREATE TABLE oldListest (
    url varchar(2083) NOT NULL,
    description varchar(255),
    user_submit boolean,
-   date varchar(2083) ,
+   date varchar(2083)
 );
 
 INSERT INTO listings select distinct id, restaurant_name from oldList ORDER BY id;
