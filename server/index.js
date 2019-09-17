@@ -48,23 +48,27 @@ app.get('/api/restaurants/:listing', (req, res) => {
 app.post('/api/restaurants/:listing', (req, res) => {  
   //data generated automatically
   let listing_id = req.params.listing;
-  let image_id = uuidv4();
+  let id = req.params.listing;
+  let image_id = 100000001;
   let options = req.body;
   options.image_id = image_id;
-  options.listing_id = listing_id;
-
+  
   // for postgress
+  options.listing_id = listing_id;
   dbPostgres.addImagebyPostgres(options,(err,result) => {
-    if(err) {res.send(err)}
-    res.send("succesful")
-    console.log(result)
+    if(err) {
+      res.send(err)
+    } else {
+      res.send("succesful add")
+      console.log(result)
+    }
   })
-
+  
   //for Cassandra
-  // options.image_id = image_id;
+  // options.id = id;
   // dbCassandra.addImagebyCassandra(options,(err,result) => {
-  //   if(err) {return err}
-  //   res.send('succesful')
+  //   if(err) {res.send(err)}
+  //   res.send("succesful add")
   //   console.log(result)
   // })
 });

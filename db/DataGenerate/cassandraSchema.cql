@@ -1,6 +1,6 @@
 CREATE KEYSPACE listings_by_id WITH replication = {'class': 'SimpleStrategy', 'replication_factor' : 1} AND durable_writes='true' ;
 
-CREATE TABLE photos.testforuuid (
+CREATE TABLE photos.listings_by_id (
   id int,
   restaurant_name text,
   image_id UUID,
