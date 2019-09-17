@@ -40,7 +40,6 @@ app.get('/api/restaurants/:listing', (req, res) => {
   dbPostgres.getImagebyPostgres(params,(err,result) => {
        if(err) {res.send(err)}
        res.send(result)
-       console.log(result)
   })
 });
 
@@ -52,7 +51,7 @@ app.post('/api/restaurants/:listing', (req, res) => {
   let image_id = 100000001;
   let options = req.body;
   options.image_id = image_id;
-  
+
   // for postgress
   options.listing_id = listing_id;
   dbPostgres.addImagebyPostgres(options,(err,result) => {
@@ -75,7 +74,18 @@ app.post('/api/restaurants/:listing', (req, res) => {
 
 //update an photo in a listing
 app.put('/api/photos/:listing', (req, res) => {
-  console.log("successfully put")
+  let image_id = req.params.listing;
+  let options = req.body;
+  options.image_id = image_id;
+
+  dbPostgres.updateImagebyPostgres(options, (err,result) => {
+    if(err) {
+      res.send(err)
+    } else {
+      res.send("succesful update")
+    }
+  })
+
 });
 
 //delete listing and related photo gallaries
