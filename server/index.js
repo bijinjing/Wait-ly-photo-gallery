@@ -1,11 +1,16 @@
 const express = require('express');
-const compression = require('compression')
+const compression = require('compression');
+var bodyParser = require('body-parser');
 const db = require('../db/index.js');
-const dbCassandra = require('../db/DataQuery/cassandraInquery.js')
-const dbPostgres = require('../db/DataQuery/postgresInquery.js')
+const dbCassandra = require('../db/DataQuery/cassandraInquery.js');
+const dbPostgres = require('../db/DataQuery/postgresInquery.js');
+const uuidv4 = require('uuid/v4');
 
 const app = express();
 const port = 3001;
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
 
 app.use(compression());
 app.use(express.static('public'));
@@ -33,15 +38,35 @@ app.get('/api/restaurants/:listing', (req, res) => {
 
   //Postgres
   dbPostgres.getImagebyPostgres(params,(err,result) => {
-       if(err) {return err}
+       if(err) {res.send(err)}
        res.send(result)
        console.log(result)
   })
 });
 
 //add listing and related photo gallaries
-app.post('/api/restaurants', (req, res) => {
-  console.log("successfully post")
+app.post('/api/restaurants/:listing', (req, res) => {  
+  //data generated automatically
+  let listing_id = req.params.listing;
+  let image_id = uuidv4();
+  let options = req.body;
+  options.image_id = image_id;
+  options.listing_id = listing_id;
+
+  // for postgress
+  dbPostgres.addImagebyPostgres(options,(err,result) => {
+    if(err) {res.send(err)}
+    res.send("succesful")
+    console.log(result)
+  })
+
+  //for Cassandra
+  // options.image_id = image_id;
+  // dbCassandra.addImagebyCassandra(options,(err,result) => {
+  //   if(err) {return err}
+  //   res.send('succesful')
+  //   console.log(result)
+  // })
 });
 
 //update an photo in a listing

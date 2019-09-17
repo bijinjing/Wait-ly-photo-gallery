@@ -31,17 +31,37 @@ CREATE TABLE images (
    FOREIGN KEY (listing_id) REFERENCES listings(id)
 );
 
-CREATE TABLE oldListest (
+INSERT INTO listings select distinct id, restaurant_name from oldList ORDER BY id;
+INSERT INTO images select image_id, url, description, user_submit, date, id from oldList ORDER BY image_id;
+
+/*test*/
+CREATE TABLE oldListestUUID (
    id integer,
    name varchar(2083) NOT NULL,
-   image_id integer PRIMARY KEY,
+   image_id UUID PRIMARY KEY,
    url varchar(2083) NOT NULL,
    description varchar(255),
    user_submit boolean,
    date varchar(2083)
 );
 
-INSERT INTO listings select distinct id, restaurant_name from oldList ORDER BY id;
-INSERT INTO images select image_id, url, description, user_submit, date, id from oldList ORDER BY image_id;
+CREATE TABLE listingsUUID (
+   id integer PRIMARY KEY,
+   restaurant_name varchar(100) NOT NULL
+);
+
+CREATE TABLE imagesUUID (
+   image_id UUID PRIMARY KEY,
+   url varchar(2083) NOT NULL,
+   description varchar(255),
+   user_submit boolean,
+   date varchar(2083) ,
+   listing_id int NOT NULL,
+   FOREIGN KEY (listing_id) REFERENCES listings(id)
+);
+
+INSERT INTO listingsUUID select distinct id, restaurant_name from oldListestUUID ORDER BY id;
+INSERT INTO imagesUUID select image_id, url, description, user_submit, date, id from oldListestUUID ORDER BY image_id;
+
 
 

@@ -1,9 +1,12 @@
 const fs = require('fs');
 const faker = require('faker');
+const uuidv4 = require('uuid/v4');
 
 const gallaryGenerator = (restaurantId,imageId) => {
 
-  let image_id = (restaurantId-1) * 10 + imageId;
+  // let image_id = (restaurantId-1) * 10 + imageId;
+  //use uuid
+  let image_id = uuidv4();
   let index = Math.floor(Math.random() * 901);
   let url = `https://jinjing-photo-gallery.s3-us-west-1.amazonaws.com/photos/${index}.jpg`;
   let description = faker.lorem.words();
@@ -45,4 +48,4 @@ const generator = async(path, num, iterator) => {
   await console.log('complete',path)
 }
 
-generator('./test2.cvs',10,restaurantGenerator)
+generator('./testforUUID.csv',10,restaurantGenerator)
