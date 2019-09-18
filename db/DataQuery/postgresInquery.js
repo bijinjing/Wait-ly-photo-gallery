@@ -38,28 +38,29 @@ const updateImagebyPostgres = (options, callback) => {
   let {image_id, url, description, user_submit, date} = options;
   const old_image_id = Number(image_id);
   let data = [url, description, user_submit, date];
-  const UpdateQuery = `UPDATE images SET url = $1, description = $2, user_submit = $3, date = $4 where image_id = ${old_image_id}`;
+  const query = `UPDATE images SET url = $1, description = $2, user_submit = $3, date = $4 where image_id = ${old_image_id}`;
   client
-    .query(UpdateQuery,data)
+    .query(query,data)
     . then((res) => {callback(null, res)})
     . catch(e => callback(e.stack))
 }
 
-// const deleteImagebyPostgres = (options, callback) => {
-//   client.connect();
-//   let {url, description, user_submit, date, listing_id} = options;
-//   let data = [url, description, user_submit, date, listing_id]
-//   const query = 'INSERT INTO images(url, description, user_submit, date, listing_id) VALUES($1,$2,$3,$4,$5) RETURNING *';
-//   client
-//     .query(query, data)
-//     .then((res) => {
-//       callback(null, res.rows[0])
-//     })
-//     .catch(e => callback(e.stack));
-// }
+const deleteImagebyPostgres = (option, callback) => {
+  client.connect();
+  let {image_id} = option;
+  let number_image_id = Number(image_id)
+  const query = `DELETE FROM images where image_id = ${number_image_id}`;
+  client
+    .query(query)
+    .then((res) => {
+      callback(null, res.rows[0])
+    })
+    .catch(e => callback(e.stack));
+}
 
 module.exports = {
   getImagebyPostgres,
   addImagebyPostgres,
-  updateImagebyPostgres
+  updateImagebyPostgres,
+  deleteImagebyPostgres
 };

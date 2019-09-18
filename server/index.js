@@ -89,7 +89,18 @@ app.put('/api/photos/:listing', (req, res) => {
 });
 
 //delete listing and related photo gallaries
-app.delete('/api/restaurants/:listing', (req, res) => {
-  console.log("successfully delete")
+app.delete('/api/photos/:listing', (req, res) => {
+  let image_id = req.params.listing;
+  console.log('url',image_id)
+  let option = {image_id};
+  dbPostgres.deleteImagebyPostgres(option, (err,result) => {
+    if(err) {
+      res.send(err)
+    } else {
+      res.send("succesful delete")
+    }
+  })
+
 });
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
