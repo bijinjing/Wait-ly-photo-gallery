@@ -1,6 +1,7 @@
+const newrelic = require('newrelic');
 const express = require('express');
 const compression = require('compression');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const db = require('../db/index.js');
 const dbCassandra = require('../db/DataQuery/cassandraInquery.js');
 const dbPostgres = require('../db/DataQuery/postgresInquery.js');
@@ -8,8 +9,8 @@ const uuidv4 = require('uuid/v4');
 
 const app = express();
 const port = 3001;
-
-app.use(bodyParser.urlencoded({ extended: false }))
+app.locals.newrelic = newrelic;
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(compression());
