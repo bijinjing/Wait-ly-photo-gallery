@@ -46,9 +46,7 @@ class BannerGallery extends React.Component {
 
   componentDidMount() {
     let url = window.location.pathname;
-    console.log(url)
     let listingArr = url.split("/");
-    console.log(listingArr);
     let listing = Number(listingArr[listingArr.length-2]);
   
     // if (Number(listing.slice(1)) <= 0 || Number(listing.slice(1)) >= 10000000) {
@@ -57,6 +55,7 @@ class BannerGallery extends React.Component {
 
     axios.get(`/api/restaurants/${listing}`)
       .then((res) => {
+        console.log(res.data)
         this.setState({
           images: res.data
         });
