@@ -21,7 +21,7 @@ CREATE TABLE listings (
    id serial PRIMARY KEY,
    restaurant_name varchar(100) NOT NULL
 );
--- COPY listings (id, restaurant_name) FROM 'listings.csv'DELIMITER ',' CSV HEADER;
+-- \COPY listings (id, restaurant_name) FROM 'listings.csv'DELIMITER ',' CSV HEADER;
 
 
 CREATE TABLE images (
@@ -33,7 +33,7 @@ CREATE TABLE images (
    listing_id int NOT NULL,
    FOREIGN KEY (listing_id) REFERENCES listings(id)
 );
--- COPY images (image_id, url, description, user_submit, date, listing_id) FROM 'images.csv'DELIMITER ',' CSV HEADER;
+-- \COPY images (image_id, url, description, user_submit, date, listing_id) FROM 'images.csv'DELIMITER ',' CSV HEADER;
 
 INSERT INTO listings select distinct id, restaurant_name from oldList ORDER BY id;
 INSERT INTO images select image_id, url, description, user_submit, date, id from oldList ORDER BY image_id;

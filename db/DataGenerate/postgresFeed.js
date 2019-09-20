@@ -11,6 +11,31 @@ client = new Client({
 });
 
 client.connect();
+//update url;
+// const selectQuery = 'SELECT url from images where listing_id = $1';
+// const updateQuery = 'UPDATE images SET url = $1 where image_id = $2';
+// const updateURL = async() => {
+//   for(let id=9577366; id<= 100000000; id++){
+//       // .query(selectQuery,[id])
+//       // .then(res => {
+//       //   let newURLArray = res.rows[0].url.split('/');
+//       //   let length = newURLArray.length;
+//       //   let newURL = newURLArray[length-1].split('.')[0];
+//         // console.log('hit post',newURL)
+//   let newURL = Math.floor(Math.random() * 901).toString();
+//   await client
+//     .query(updateQuery,[newURL,id])
+//     .then(res => {
+//     })
+//     .catch(e => console.error(e.stack));
+//   // })
+//   // .catch(e => console.error(e.stack));
+//   }
+//   await console.log('complete')
+// }
+
+// updateURL()
+
 //change the file name if needed
 const text = 'INSERT INTO oldListestuuid(id, name, image_id, url, description, user_submit, date ) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *';
 
