@@ -1,12 +1,17 @@
 config:
-  target: `http://localhost:3001/456`
+  target: 'http://localhost:3001'
   phases:
-    - duration: 60
-      arrivalRate: 20
+    - duration: 100
+      arrivalRate: 10
   defaults:
     headers:
       x-my-service-auth: '987401838271002188298567'
 scenarios:
   - flow:
-    - get:
-        url: "/345"
+    - loop:
+      - get:
+          url: "/{{$randomNumber(2,10000000)}}"
+      count: 60
+
+
+

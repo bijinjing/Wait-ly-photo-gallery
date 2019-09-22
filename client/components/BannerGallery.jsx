@@ -5,6 +5,7 @@ import BrandonTextMedium from '../fonts/BrandonText-Medium.otf';
 import BrandonTextBold from '../fonts/BrandonText-Bold.otf';
 import GalleryImage from './GalleryImage.jsx';
 import ImageModal from './ImageModal.jsx';
+import $ from 'jquery';
 
 const GlobalStyle = styled.createGlobalStyle`
   @font-face {
@@ -48,14 +49,14 @@ class BannerGallery extends React.Component {
     let url = window.location.pathname;
     let listingArr = url.split("/");
     let listing = Number(listingArr[listingArr.length-2]);
+    console.log('checklisting',listing)
   
     // if (Number(listing.slice(1)) <= 0 || Number(listing.slice(1)) >= 10000000) {
     //   listing = 1;
     // }
 
-    axios.get(`/api/restaurants/${listing}`)
+    axios.get(`http://localhost:3001/api/restaurants/${listing}`)
       .then((res) => {
-        console.log(res.data)
         this.setState({
           images: res.data
         });

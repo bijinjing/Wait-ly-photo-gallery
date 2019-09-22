@@ -37,10 +37,10 @@ client.connect();
 // updateURL()
 
 //change the file name if needed
-const text = 'INSERT INTO oldListestuuid(id, name, image_id, url, description, user_submit, date ) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *';
+const text = 'INSERT INTO images(url, description, user_submit, date, listing_id ) VALUES($1,$2,$3,$4,$5) RETURNING *';
 
 //change the file name if needed
-const instream = fs.createReadStream('./testforUUID.csv');
+const instream = fs.createReadStream('./AWSnewfile.csv');
 const outstream = new stream;
 outstream.readable = true;
 outstream.writable = true;
@@ -51,12 +51,14 @@ const rl = readline.createInterface({
   terminal: false
 });
 
+
 rl.on('line', (line) => {
   let data = line.split(',');
   client
-    .query(text, data)
-    .then(res => {
-      console.log('hit post',res.rows[0])
-    })
-    .catch(e => console.error(e.stack));
+  .query(text, data)
+  .then(res => {
+    // console.log('hit post',res.rows[0])
+  })
+  .catch(e => console.error(e.stack));
 });
+                  

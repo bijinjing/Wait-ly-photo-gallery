@@ -1,7 +1,7 @@
 const fs = require('fs');
 const faker = require('faker');
 const gallaryGenerator = (restaurantId,imageId) => {
-
+  let image_id = (restaurantId-1) * 10 + imageId;
   let index = Math.floor(Math.random() * 901);
   let url = index.toString();
   let description = faker.lorem.words();
@@ -13,7 +13,7 @@ const gallaryGenerator = (restaurantId,imageId) => {
       date = date.split(' ');
       date = date[1] +' '+ date[2] + ' ' + date[3];
 
-  return ` ${url}, ${description}, ${user_submit}, ${date}`
+  return ` ${image_id},${url}, ${description}, ${user_submit}, ${date}`
 }
 
 const restaurantGenerator = (restaurantId) => {

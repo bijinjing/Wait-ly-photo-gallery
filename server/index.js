@@ -24,6 +24,7 @@ app.use(function(req, res, next) {
 
 //get photo gallaries
 app.get('/api/restaurants/:listing', (req, res) => {
+  
   let params = req.params.listing;
   // db.getImagesFromListing(params, (error, images) => {
   //   if (error) { return error; }
@@ -48,7 +49,7 @@ app.get('/api/restaurants/:listing', (req, res) => {
 app.post('/api/restaurants/:listing', (req, res) => {  
   //data generated automatically
   let listing_id = req.params.listing;
-  let id = req.params.listing;
+  // let id = req.params.listing;
   let image_id = 100000001;
   let options = req.body;
   options.image_id = image_id;

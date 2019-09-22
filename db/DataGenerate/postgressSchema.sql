@@ -26,7 +26,7 @@ CREATE TABLE listings (
 
 CREATE TABLE images (
    image_id serial PRIMARY KEY,
-   url varchar(2083) NOT NULL,
+   url varchar(2083),
    description varchar(255),
    user_submit boolean,
    date varchar(2083) ,
