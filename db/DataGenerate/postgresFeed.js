@@ -7,6 +7,7 @@ const stream = require('stream');
 client = new Client({
   host: '13.52.77.96',
   username: 'ubuntu',
+  password:'Student111!',
   database: 'photos',
 });
 
