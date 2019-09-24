@@ -5,7 +5,7 @@ const stream = require('stream');
 
 
 client = new Client({
-  // host: 'localhost',
+  host: '13.52.77.96',
   username: 'ubuntu',
   database: 'photos',
 });
