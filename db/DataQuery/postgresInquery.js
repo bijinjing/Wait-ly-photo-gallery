@@ -4,7 +4,8 @@ const pool = new Pool({
   host: '13.52.77.96',
   username: 'ubuntu',
   password:'Student111!',
-  database: 'photos'
+  database: 'photos',
+  port:5432
 });
 
 pool.on('error', (err, client) => {
