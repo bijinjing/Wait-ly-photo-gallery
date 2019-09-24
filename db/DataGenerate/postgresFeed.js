@@ -10,7 +10,13 @@ client = new Client({
   database: 'photos',
 });
 
-client.connect();
+client.connect()
+.then(() => {
+  console.log('db is connected')
+})
+.catch((err) => {
+  console.log(err)
+})
 //update url;
 // const selectQuery = 'SELECT url from images where listing_id = $1';
 // const updateQuery = 'UPDATE images SET url = $1 where image_id = $2';
