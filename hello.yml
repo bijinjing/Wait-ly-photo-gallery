@@ -1,7 +1,7 @@
 config:
   target: 'http://localhost:3001'
   phases:
-    - duration: 100
+    - duration: 30
       arrivalRate: 10
   defaults:
     headers:
@@ -11,7 +11,7 @@ scenarios:
     - loop:
       - get:
           url: "/{{$randomNumber(2,10000000)}}"
-      count: 60
+      count: 5
 
 
 

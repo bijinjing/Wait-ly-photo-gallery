@@ -38,10 +38,10 @@ const write = (writer,data) => {
 
 const generator = async(path, num, iterator) => {
   let writelistings = fs.createWriteStream(path);
-  for(let i=1; i<=num; i++){
+  for(let i=7000001; i<=num; i++){
     await write(writelistings, iterator(i))
   }
   await console.log('complete',path)
 }
 
-generator('./AWSnewfile.csv',10000000,restaurantGenerator)
+generator('./imagesFive.csv',10000000,restaurantGenerator)

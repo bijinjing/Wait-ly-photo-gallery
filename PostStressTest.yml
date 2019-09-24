@@ -1,0 +1,20 @@
+config:
+  target: 'http://localhost:3001'
+  phases:
+    - duration: 30
+      arrivalRate: 10
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow:
+    - loop:
+      - post:
+          url: "/api/restaurants/{{$randomNumber(2,10000000)}}"
+          json:
+             restaurant_name: "test"
+             description: "it is a test"
+             user_submit: true
+             date: "Feb 25 2019"
+             url: "{{$randomNumber(1,900)}}" 
+      count: 30
