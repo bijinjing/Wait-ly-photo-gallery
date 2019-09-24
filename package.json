@@ -45,6 +45,7 @@
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "jest": "^24.9.0",
     "jest-enzyme": "^7.1.0",
+    "morgan": "^1.9.1",
     "nodemon": "^1.19.1",
     "npm": "^6.11.1",
     "uglifyjs-webpack-plugin": "^2.2.0",

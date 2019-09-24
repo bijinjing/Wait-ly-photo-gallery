@@ -9,6 +9,7 @@ const uuidv4 = require('uuid/v4');
 
 const app = express();
 const port = 3001;
+app.use(require('morgan')('tiny'));
 app.locals.newrelic = newrelic;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

@@ -26,6 +26,7 @@ const getImagebyPostgres = (id, callback) => {
           callback(null, res.rows)
         })
         .catch(e => callback(e.stack));
+        client.release()
     })
 }
 
@@ -40,9 +41,15 @@ const addImagebyPostgres = (options, callback) => {
               .query(query, data)
               .then((res) => {
                 callback(null, res.rows[0])
+                client.release()
               })
-              .catch(e => callback(e.stack));
+              .catch(e => {
+                callback(e.stack)
+                client.release()});
+              
+              
     })
+    
 }
 
 
@@ -59,6 +66,7 @@ const updateImagebyPostgres = (options, callback) => {
         .query(query,data)
         . then((res) => {callback(null, res)})
         . catch(e => callback(e.stack))
+        client.release()
   })
 }
 
@@ -75,6 +83,7 @@ const deleteImagebyPostgres = (option, callback) => {
         callback(null, res.rows[0])
       })
       .catch(e => callback(e.stack));
+      client.release()
   })
 }
 
