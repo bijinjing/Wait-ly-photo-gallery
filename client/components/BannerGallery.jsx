@@ -54,7 +54,7 @@ class BannerGallery extends React.Component {
     // if (Number(listing.slice(1)) <= 0 || Number(listing.slice(1)) >= 10000000) {
     //   listing = 1;
     // }
-
+    
     axios.get(`http://54.153.53.162:3001/api/restaurants/${listing}`)
       .then((res) => {
         this.setState({
