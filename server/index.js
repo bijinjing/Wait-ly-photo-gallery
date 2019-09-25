@@ -22,7 +22,7 @@ const goRedis = (req, res, next) => {
   });
 };
 
-client.set('jinjing', 'bi')
+
 const app = express();
 const port = 3001;
 app.use(require('morgan')('tiny'));
@@ -58,6 +58,7 @@ app.get('/api/restaurants/:listing', goRedis, (req, res) => {
   //Postgres
   dbPostgres.getImagebyPostgres(params,(err,result) => {
        if(err) {res.send(err)}
+       client.set(JSON.stringify(params), JSON.stringify(result))
        res.send(result)
   })
 });
