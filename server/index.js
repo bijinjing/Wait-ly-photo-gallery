@@ -9,9 +9,10 @@ const uuidv4 = require('uuid/v4');
 const redis = require('redis')
 const option = {
   host:'52.8.132.146', 
-  port: 6379
+  port: 6379,
 }
 const client = redis.createClient(option);
+client.auth('Student111!')
 
 const goRedis = (req, res, next) => {
   client.get(req.params.listing, (err, reply) => {
