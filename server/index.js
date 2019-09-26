@@ -7,11 +7,11 @@ const dbCassandra = require('../db/DataQuery/cassandraInquery.js');
 const dbPostgres = require('../db/DataQuery/postgresInquery.js');
 const uuidv4 = require('uuid/v4');
 const redis = require('redis')
-const option = {
-  host:'52.8.132.146', 
-  port: 6379,
-}
-const client = redis.createClient(option);
+// const option = {
+//   host:'52.8.132.146', 
+//   port: 6379,
+// }
+const client = redis.createClient(6379, '52.8.132.146');
 client.auth('Student111!')
 
 const goRedis = (req, res, next) => {
