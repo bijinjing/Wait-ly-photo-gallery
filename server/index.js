@@ -7,10 +7,12 @@ const dbCassandra = require('../db/DataQuery/cassandraInquery.js');
 const dbPostgres = require('../db/DataQuery/postgresInquery.js');
 const uuidv4 = require('uuid/v4');
 const redis = require('redis')
-const client = redis.createClient(6379);
+const option = {
+  host:'52.8.132.146', 
+  port: 6379
+}
+const client = redis.createClient(option);
 
-// const { PostgresRedis, HashTypes } = require("postgres-redis");
-// const  asyncRedis  =  require("async-redis");
 const goRedis = (req, res, next) => {
   client.get(req.params.listing, (err, reply) => {
     if (err) throw err;
@@ -111,7 +113,7 @@ app.put('/api/photos/:listing', (req, res) => {
 //delete listing and related photo gallaries
 app.delete('/api/photos/:listing', (req, res) => {
   let image_id = req.params.listing;
-  console.log('url',image_id)
+
   let option = {image_id};
   dbPostgres.deleteImagebyPostgres(option, (err,result) => {
     if(err) {
