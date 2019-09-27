@@ -43,7 +43,7 @@ app.use(function(req, res, next) {
 });
 
 //get photo gallaries
-app.get('/api/restaurants/:listing', goRedis, (req, res) => {
+app.get('/api/restaurants/:listing', (req, res) => {
   
   let params = req.params.listing;
   // db.getImagesFromListing(params, (error, images) => {
@@ -61,7 +61,7 @@ app.get('/api/restaurants/:listing', goRedis, (req, res) => {
   //Postgres
   dbPostgres.getImagebyPostgres(params,(err,result) => {
        if(err) {res.send(err)}
-       client.set(JSON.stringify(params), JSON.stringify(result))
+      //  client.set(JSON.stringify(params), JSON.stringify(result))
        res.send(result)
   })
 });
