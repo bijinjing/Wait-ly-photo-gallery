@@ -55,7 +55,7 @@ class BannerGallery extends React.Component {
     //   listing = 1;
     // }
     
-    axios.get(`http://54.193.6.128:80/api/restaurants/${listing}`)
+    axios.get(`http://54.67.114.20:80/api/restaurants/${listing}`)
       .then((res) => {
         this.setState({
           images: res.data

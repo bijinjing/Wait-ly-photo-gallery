@@ -6,24 +6,20 @@ const db = require('../db/index.js');
 const dbCassandra = require('../db/DataQuery/cassandraInquery.js');
 const dbPostgres = require('../db/DataQuery/postgresInquery.js');
 const uuidv4 = require('uuid/v4');
-const redis = require('redis')
-// const option = {
-//   host:'52.8.132.146', 
-//   port: 6379,
-// }
-const client = redis.createClient(6379, '52.8.132.146');
-client.auth('Student111!')
+// const redis = require('redis')
+// const client = redis.createClient(6379, '52.8.132.146');
+// client.auth('Student111!')
 
-const goRedis = (req, res, next) => {
-  client.get(req.params.listing, (err, reply) => {
-    if (err) throw err;
-    if (reply !== null) {
-      res.send(JSON.parse(reply));
-    } else {
-      next();
-    }
-  });
-};
+// const goRedis = (req, res, next) => {
+//   client.get(req.params.listing, (err, reply) => {
+//     if (err) throw err;
+//     if (reply !== null) {
+//       res.send(JSON.parse(reply));
+//     } else {
+//       next();
+//     }
+//   });
+// };
 
 
 const app = express();
