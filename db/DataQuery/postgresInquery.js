@@ -15,6 +15,7 @@ pool.on('error', (err, client) => {
 
 
 const getImagebyPostgres = (id, callback) => {
+  var dbCallback = (res) => {callback(null, res.rows)};
   pool
     .connect()
     .then(client => {
@@ -22,9 +23,7 @@ const getImagebyPostgres = (id, callback) => {
       const query = `SELECT * FROM images where listing_id=${newId};`
       client
         .query(query)
-        .then((res) => {
-          callback(null, res.rows)
-        })
+        .then(dbCallback)
         .catch(e => callback(e.stack));
         client.release()
     })
